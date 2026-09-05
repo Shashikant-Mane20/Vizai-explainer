@@ -1,0 +1,226 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system — "Interactive digital textbook".
+ * Warm paper background, deep ink foreground, chalk-teal primary,
+ * amber highlighter accent. Fraunces for headings, IBM Plex Sans body,
+ * IBM Plex Mono for labels/code.
+ */
+
+@theme inline {
+  --font-display: "Fraunces", Georgia, serif;
+  --font-sans: "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+
+  /* Textbook-specific tokens */
+  --color-paper: var(--paper);
+  --color-paper-deep: var(--paper-deep);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-highlighter: var(--highlighter);
+  --color-highlighter-foreground: var(--highlighter-foreground);
+  --color-grid: var(--grid);
+
+  /* Node palette (referenced by index from the AI's output) */
+  --color-node-1: var(--node-1);
+  --color-node-2: var(--node-2);
+  --color-node-3: var(--node-3);
+  --color-node-4: var(--node-4);
+  --color-node-5: var(--node-5);
+
+  --color-chart-1: var(--node-1);
+  --color-chart-2: var(--node-2);
+  --color-chart-3: var(--node-3);
+  --color-chart-4: var(--node-4);
+  --color-chart-5: var(--node-5);
+
+  --shadow-paper: 0 1px 2px oklch(0.3 0.03 60 / 0.06), 0 12px 32px -12px oklch(0.3 0.03 60 / 0.18);
+  --shadow-lift: 0 18px 50px -20px oklch(0.25 0.04 250 / 0.35);
+
+  --animate-draw: draw 0.9s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  --animate-pop: pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  --animate-fade-up: fade-up 0.45s ease-out both;
+  --animate-pulse-ring: pulse-ring 1.8s ease-out infinite;
+  --animate-sketch: sketch 1.6s ease-in-out infinite;
+  --animate-blink: blink 1s steps(2) infinite;
+}
+
+:root {
+  --radius: 0.75rem;
+
+  --paper: oklch(0.975 0.012 85);
+  --paper-deep: oklch(0.945 0.018 82);
+  --ink: oklch(0.23 0.03 255);
+  --ink-soft: oklch(0.48 0.025 255);
+  --grid: oklch(0.86 0.02 80);
+
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: oklch(0.995 0.006 90);
+  --card-foreground: var(--ink);
+  --popover: oklch(0.995 0.006 90);
+  --popover-foreground: var(--ink);
+
+  --primary: oklch(0.5 0.11 195);
+  --primary-foreground: oklch(0.98 0.01 90);
+  --secondary: oklch(0.93 0.02 85);
+  --secondary-foreground: var(--ink);
+  --muted: oklch(0.93 0.015 85);
+  --muted-foreground: var(--ink-soft);
+  --accent: oklch(0.9 0.09 85);
+  --accent-foreground: var(--ink);
+  --highlighter: oklch(0.87 0.17 90);
+  --highlighter-foreground: var(--ink);
+  --destructive: oklch(0.6 0.2 25);
+  --destructive-foreground: oklch(0.98 0.01 90);
+  --border: oklch(0.88 0.02 80);
+  --input: oklch(0.88 0.02 80);
+  --ring: oklch(0.5 0.11 195);
+
+  --node-1: oklch(0.55 0.13 195);
+  --node-2: oklch(0.7 0.16 55);
+  --node-3: oklch(0.58 0.16 300);
+  --node-4: oklch(0.6 0.15 145);
+  --node-5: oklch(0.6 0.19 15);
+}
+
+.dark {
+  --paper: oklch(0.2 0.02 255);
+  --paper-deep: oklch(0.17 0.02 255);
+  --ink: oklch(0.95 0.01 85);
+  --ink-soft: oklch(0.72 0.02 255);
+  --grid: oklch(0.3 0.02 255);
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: oklch(0.24 0.02 255);
+  --card-foreground: var(--ink);
+  --popover: oklch(0.24 0.02 255);
+  --popover-foreground: var(--ink);
+  --primary: oklch(0.72 0.12 195);
+  --primary-foreground: oklch(0.15 0.02 255);
+  --secondary: oklch(0.3 0.02 255);
+  --secondary-foreground: var(--ink);
+  --muted: oklch(0.3 0.02 255);
+  --muted-foreground: var(--ink-soft);
+  --accent: oklch(0.4 0.08 85);
+  --accent-foreground: var(--ink);
+  --highlighter: oklch(0.8 0.16 90);
+  --highlighter-foreground: oklch(0.15 0.02 255);
+  --destructive: oklch(0.65 0.2 25);
+  --destructive-foreground: oklch(0.98 0.01 90);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.72 0.12 195);
+}
+
+@keyframes draw {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: 0; }
+}
+@keyframes pop {
+  from { opacity: 0; transform: scale(0.7); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse-ring {
+  0% { transform: scale(0.96); opacity: 0.9; }
+  100% { transform: scale(1.18); opacity: 0; }
+}
+@keyframes sketch {
+  0% { stroke-dashoffset: 1; opacity: 0.3; }
+  50% { stroke-dashoffset: 0; opacity: 1; }
+  100% { stroke-dashoffset: -1; opacity: 0.3; }
+}
+@keyframes blink {
+  to { visibility: hidden; }
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    font-family: var(--font-sans);
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display);
+    font-variation-settings: "opsz" 72, "SOFT" 30;
+  }
+}
+
+@utility paper-grid {
+  background-color: var(--color-card);
+  background-image:
+    linear-gradient(to right, var(--color-grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-grid) 1px, transparent 1px);
+  background-size: 28px 28px;
+  background-position: center;
+}
+
+@utility highlight-mark {
+  background-image: linear-gradient(transparent 55%, var(--color-highlighter) 55%, var(--color-highlighter) 92%, transparent 92%);
+  padding-inline: 0.1em;
+}
+
+@utility node-pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: var(--animate-pulse-ring);
+}
+
+@utility node-pop {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: var(--animate-pop);
+}
+
+@utility edge-draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: var(--animate-draw);
+}
+
+@utility sketch-line {
+  stroke-dasharray: 1;
+  animation: var(--animate-sketch);
+}
